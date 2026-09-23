@@ -19,6 +19,7 @@ def merge(left, right):
             i += 1
         elif left[i]["total"] == right[j]["total"] and left[i]["penonton"] > right[j]["penonton"]:
             result.append(left[i])
+            i += 1
         else:
             result.append(right[j])
             j += 1

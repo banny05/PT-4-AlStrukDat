@@ -1,6 +1,30 @@
 def sortPeserta(peserta):
     # Kerjakan di sini yaw
-    pass
+    if len(peserta) <= 1:
+        return peserta
+    mid = len(peserta) // 2
+    kiri = peserta[:mid]
+    kanan = peserta[mid:]
+    kiri = sortPeserta(kiri)
+    kanan = sortPeserta(kanan)
+    return merge(kiri, kanan)
+
+def merge(left, right):
+    result = []
+    i = 0
+    j = 0
+    while i < len(left) and j < len(right):
+        if left[i]["total"] > right[j]["total"]:
+            result.append(left[i])
+            i += 1
+        elif left[i]["total"] == right[j]["total"] and left[i]["penonton"] > right[j]["penonton"]:
+            result.append(left[i])
+        else:
+            result.append(right[j])
+            j += 1
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
 
 
 # Program Utama - Jangan di Hapus
